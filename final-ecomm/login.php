@@ -31,9 +31,7 @@
    }
 
 ?>
-
-
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
@@ -42,7 +40,7 @@
    <title>Document</title>
 </head>
 <body>
-   <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+   <form action="" method="POST">
       <label for="username">Username</label>
       <input type="text" id="username" name="username">
       
@@ -52,4 +50,4 @@
       <button name="login">Login</button>
    </form>
 </body>
-</html>
+</html> -->
