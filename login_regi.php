@@ -1,3 +1,45 @@
+<?php 
+require_once('final-ecomm/database.php');
+
+// this is for login script
+if(isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
+    
+    $verify_statement = $database->verify_customers($username, $encrypted_pass);
+    
+
+    if($verify_statement) {
+        echo '<script> alert("Success!") </script>';
+    } else {
+        echo '<script> alert("Failed!") </script>';
+    }
+    
+}
+?>
+
+<?php
+if(isset($_POST['register'])) {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
+
+    $create_customer_statement = $database->create_customers($username, $email, $encrypted_pass);
+
+    if($create_customer_statement) {
+        echo '<script> alert("Success!") </script>';
+    } else {
+        echo '<script> alert("Failed!") </script>';
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +57,7 @@
             <!-- Login Page -->
             <div class="col-md-6 login-form">
                 <h3>Login</h3>
-                <form method="POST" action="final-ecomm/login.php">
+                <form method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Email or Username" value="" name="username" />
                     </div>
@@ -36,15 +78,15 @@
             <div class="col-md-6 regi-form">
                 <h3>Register</h3>
                 
-                <form>
+                <form method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email " value="" />
+                        <input type="text" class="form-control" placeholder="Email " value="" name="email" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username" value="" />
+                        <input type="text" class="form-control" placeholder="Username" value="" name="username" />
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password " value="" />
+                        <input type="password" class="form-control" placeholder="Password " value="" name="password" />
                     </div>
 
                     <div class="form-group">
@@ -52,7 +94,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit" value="Register" />
+                        <input type="submit" class="btnSubmit" value="Register" name="register" />
                     </div>
                     <div class="form-group">
                         <button type="button" class="btnSubmit" onclick="location.href='seller_regi.php';" />Become a Seller</button>
