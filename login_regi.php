@@ -7,7 +7,7 @@ if(isset($_POST['login'])) {
     $password = $_POST['password'];
     $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
     
-    $verify_statement = $database->verify_customers($username, $encrypted_pass);
+    $verify_statement = $database->verify_customers($username, $password);
     
 
     if($verify_statement) {
@@ -18,6 +18,8 @@ if(isset($_POST['login'])) {
     
 }
 ?>
+
+
 
 <?php
 if(isset($_POST['register'])) {

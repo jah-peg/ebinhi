@@ -44,13 +44,11 @@ class Database {
   // verifying of credentials for the customers
   public function verify_customers($userName, $password) {
     $sql = "SELECT * FROM users WHERE username = $userName";
-    $retval = mysqli_query($this->connection, $sql);
+    $result = mysqli_query($this->connection, $sql);
     
-    if($retval) {
-      while($row = mysqli_fetch_assoc($retval)) {
-        $db_pass = $row['password'];
-  
-        if(password_verify($password, $db_pass)) {
+    if(mysqli_num_rows($result) == 1) {
+      while($row = mysqli_fetch_assoc($result)) {
+        if(password_verify($password, $row['password'])) {
           return true;
         } else {
           return false;
