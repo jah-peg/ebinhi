@@ -11,9 +11,9 @@ if(isset($_POST['login'])) {
     
 
     if($verify_statement) {
-        echo '<script> alert("Success!") </script>';
+        echo "Success!";
     } else {
-        echo '<script> alert("Failed!") </script>';
+        echo "Failed!";
     }
     
 }

@@ -43,26 +43,24 @@ class Database {
 
   // verifying of credentials for the customers
   public function verify_customers($userName, $password) {
-    $sql = "SELECT * FROM users WHERE username = $userName";
+    $sql = "SELECT * FROM `users` WHERE `username` = '$userName'";
     $result = mysqli_query($this->connection, $sql);
-    
-    if(mysqli_num_rows($result) == 1) {
+
+    if($result) {
       while($row = mysqli_fetch_assoc($result)) {
         if(password_verify($password, $row['password'])) {
           return true;
         } else {
-          return false;
+          break;
         }
       }
     } else {
       return false;
     }
-
-    
-
-    
-    
   }
+
+
+
 }
 
 
