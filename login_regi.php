@@ -11,11 +11,12 @@ if(isset($_POST['login'])) {
     
 
     if($verify_statement) {
-        echo "Success!";
+        echo '<script> alert("Success!") </script';
+        $_SESSION['user'] = $verify_statement;
+		header("Location: final-ecomm/user_home.php");
     } else {
         echo "Failed!";
-    }
-    
+    }   
 }
 ?>
 

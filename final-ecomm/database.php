@@ -46,14 +46,22 @@ class Database {
     $sql = "SELECT * FROM `users` WHERE `username` = '$userName'";
     $result = mysqli_query($this->connection, $sql);
 
-    if($result) {
-      while($row = mysqli_fetch_assoc($result)) {
-        if(password_verify($password, $row['password'])) {
-          return true;
-        } else {
-          break;
-        }
+    if(mysqli_num_rows($result)) {
+      $row = mysqli_fetch_assoc($result);
+      if(password_verify($password, $row['password'])) {
+        return $row['id'];
       }
+    } else {
+      return false;
+    }
+  }
+
+  public function read_customers($sql) {
+    $result = mysqli_query($this->connection, $sql);
+
+    if($result) {
+      $row = mysqli_fetch_assoc($result);
+      return $row;
     } else {
       return false;
     }
