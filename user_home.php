@@ -16,6 +16,8 @@
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +29,10 @@
 <body>
    <h1>This where your transactions as a user will take place</h1>
 
-   <?php echo $result['username']; ?>
-   <?php echo $result['email']; ?>
-   <?php echo $result['role']; ?>
-   <?php echo $result['status']; ?>
-
+   <?php echo $result['username']; ?> <br>
+   <?php echo $result['email']; ?> <br>
+   <?php echo $result['role']; ?> <br>
+   <?php echo $result['status']; ?> <br>
+   <button><a href="logout.php">Logout</a></button>
 </body>
 </html>

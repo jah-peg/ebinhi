@@ -1,5 +1,7 @@
 <?php 
-require_once('final-ecomm/database.php');
+session_start();
+
+include_once('database.php');
 
 // this is for login script
 if(isset($_POST['login'])) {
@@ -10,12 +12,12 @@ if(isset($_POST['login'])) {
     $verify_statement = $database->verify_customers($username, $password);
     
 
-    if($verify_statement) {
+    if(!$verify_statement) {
+        echo "Failed!";
+    } else {
         echo '<script> alert("Success!") </script';
         $_SESSION['user'] = $verify_statement;
-		header("Location: final-ecomm/user_home.php");
-    } else {
-        echo "Failed!";
+		header("Location: user_home.php");
     }   
 }
 ?>
