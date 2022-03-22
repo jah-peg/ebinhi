@@ -1,17 +1,4 @@
 <?php
-// procedural programming (ekis na to)
-// $server = 'localhost';
-// $database = 'final_ecomm';
-// $username = 'root';
-// $password = '';
-
-// $conn = mysqli_connect($server, $username, $password, $database);
-
-// // Check connection
-// if (!$conn) {
-//   die("Connection failed: " . mysqli_connect_error());
-// }
-// $message = "Connected successfully";
 
 // Creating a Database class for the connection
 
@@ -46,14 +33,22 @@ class Database {
     $sql = "SELECT * FROM `users` WHERE `username` = '$userName'";
     $result = mysqli_query($this->connection, $sql);
 
-    if($result) {
-      while($row = mysqli_fetch_assoc($result)) {
-        if(password_verify($password, $row['password'])) {
-          return true;
-        } else {
-          break;
-        }
+    if(mysqli_num_rows($result)) {
+      $row = mysqli_fetch_assoc($result);
+      if(password_verify($password, $row['password'])) {
+        return $row['id'];
       }
+    } else {
+      return false;
+    }
+  }
+
+  public function read_customers($sql) {
+    $result = mysqli_query($this->connection, $sql);
+
+    if($result) {
+      $row = mysqli_fetch_assoc($result);
+      return $row;
     } else {
       return false;
     }
