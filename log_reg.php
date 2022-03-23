@@ -36,8 +36,10 @@ if(isset($_POST['register'])) {
 
     if($create_customer_statement) {
         echo '<script> alert("Success!") </script>';
+        header("Location: log_reg.php");
     } else {
         echo '<script> alert("Failed!") </script>';
+        header("Location: log_reg.php");
     }
 }
 
