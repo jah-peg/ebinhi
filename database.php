@@ -19,7 +19,7 @@ class Database {
 
   // registration of new customers
   public function create_customers($userName, $email, $encrypted_pass) {
-    $sql = "INSERT INTO users(username, email, password) VALUES('$userName', '$email', '$encrypted_pass')  ";
+    $sql = "INSERT INTO users(username, email, password) VALUES('$userName', '$email', '$encrypted_pass');";
     $retval = mysqli_query($this->connection, $sql);
     if($retval) {
       return true;
@@ -30,7 +30,7 @@ class Database {
 
   // verifying of credentials for the customers
   public function verify_customers($userName, $password) {
-    $sql = "SELECT * FROM `users` WHERE `username` = '$userName'";
+    $sql = "SELECT * FROM `users` WHERE `username` = '$userName';";
     $result = mysqli_query($this->connection, $sql);
 
     if(mysqli_num_rows($result)) {
@@ -53,8 +53,6 @@ class Database {
       return false;
     }
   }
-
-
 
 }
 

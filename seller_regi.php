@@ -21,6 +21,11 @@
    
 <!-- END OF CAROUSEL -->
 
+<?php
+
+
+
+?>
 
 <!-- REGISTRATION -->
 
@@ -28,7 +33,7 @@
   <p class="header_form">Registration</p>
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
-    <p><input placeholder="Username" oninput="this.className = ''" name="uname"></p>
+    <p><input placeholder="Username" oninput="this.className = ''" name="username"></p>
     <p><input placeholder="Email" oninput="this.className = ''" name="email"></p>
     <p><input placeholder="First name" oninput="this.className = ''" name="fname"></p>
     <p><input placeholder="Last name" oninput="this.className = ''" name="lname"></p>

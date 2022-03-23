@@ -80,7 +80,7 @@ if(isset($_POST['register'])) {
             <div class="row">
                 <div class="col-md-6 login-form">
                     <h3>Login</h3>
-                    <form method="POST">
+                    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Email or Username" value="" name="username" />
                         </div>
@@ -97,7 +97,7 @@ if(isset($_POST['register'])) {
                 </div>
                 <div class="col-md-6 regi-form">
                     <h3>Register</h3>
-                    <form method="POST">
+                    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Email " value="" name="email" />
                         </div>
@@ -113,9 +113,9 @@ if(isset($_POST['register'])) {
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Register" />
-                            
+                            <input type="submit" class="btnSubmit" value="Register" name="register"/>
                         </div>
+
                         <div class="form-group">
                         <button type="button" class="btnSubmit" onclick="location.href='seller_regi.php';" />Become a Seller</button>
                         </div>
