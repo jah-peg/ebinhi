@@ -1,29 +1,4 @@
 <?php
-session_start();
-include_once('database.php');
-  if(isset($_POST['submit'])) {
-    $firstname =$_POST['firstname'];
-    $username = $_POST['username'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $fullname = $firstname . $lastname;
-    $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
-
-    $create_seller_statement = $database->create_seller($fullname, $username, $email, $encrypted_pass);
-    
-    if($create_seller_statement) {
-        echo '<script> alert("Success!") </script>';
-    } else {
-        echo '<script> alert("Failed!") </script>';
-    }
-}
-
-
-
-?>
-
-<?php
  include_once 'header.php';
 ?>
     <style type="text/css">
@@ -49,14 +24,14 @@ include_once('database.php');
 
 <!-- REGISTRATION -->
 
-<form id="regForm" action="/action_page.php">
+<form id="regForm" action="action_page.php" method="POST">
   <p class="header_form">Registration</p>
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
-    <p><input placeholder="Username" oninput="this.className = ''" name="uname"></p>
+    <p><input placeholder="Username" oninput="this.className = ''" name="username"></p>
     <p><input placeholder="Email" oninput="this.className = ''" name="email"></p>
-    <p><input placeholder="First name" oninput="this.className = ''" name="fname"></p>
-    <p><input placeholder="Last name" oninput="this.className = ''" name="lname"></p>
+    <p><input placeholder="First name" oninput="this.className = ''" name="firstname"></p>
+    <p><input placeholder="Last name" oninput="this.className = ''" name="lastname"></p>
     <p><input placeholder="Store name" oninput="this.className = ''" name="store_name"></p>
     <p class="small text-muted mb-0"> https://www.ekadiwa.da.gov.ph/shop/[your_store]
   </div>
@@ -74,7 +49,7 @@ include_once('database.php');
 
   <div class="tab">Login Info:
     <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+    <p><input placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
     <input type="file" id="myFile" name="filename">
     <p class="small text-muted mb-0">Upload your shop profile picture
 
@@ -119,6 +94,8 @@ function showTab(n) {
   }
   if (n == (x.length - 1)) {
     document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").type = "submit";
+    document.getElementById("nextBtn").setAttribute("name", "submit");
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
