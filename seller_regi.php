@@ -1,4 +1,29 @@
 <?php
+session_start();
+include_once('database.php');
+  if(isset($_POST['submit'])) {
+    $firstname =$_POST['firstname'];
+    $username = $_POST['username'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $fullname = $firstname . $lastname;
+    $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
+
+    $create_seller_statement = $database->create_seller($fullname, $username, $email, $encrypted_pass);
+    
+    if($create_seller_statement) {
+        echo '<script> alert("Success!") </script>';
+    } else {
+        echo '<script> alert("Failed!") </script>';
+    }
+}
+
+
+
+?>
+
+<?php
  include_once 'header.php';
 ?>
     <style type="text/css">
