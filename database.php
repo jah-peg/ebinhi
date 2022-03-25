@@ -54,6 +54,15 @@ class Database {
     }
   }
 
+  public function create_seller($sql) {
+    $sql = "INSERT INTO users(full_name, username, email, password, role) VALUES(CONCAT('$firstname', '$lastname'), '$userName', '$email', '$encrypted_pass','vendor');";
+    $retval = mysqli_query($this->connection, $sql);
+    if($retval) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 
