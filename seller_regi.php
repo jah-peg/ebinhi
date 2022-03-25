@@ -21,11 +21,6 @@
    
 <!-- END OF CAROUSEL -->
 
-<?php
-
-
-
-?>
 
 <!-- REGISTRATION -->
 
@@ -33,7 +28,7 @@
   <p class="header_form">Registration</p>
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
-    <p><input placeholder="Username" oninput="this.className = ''" name="username"></p>
+    <p><input placeholder="Username" oninput="this.className = ''" name="uname"></p>
     <p><input placeholder="Email" oninput="this.className = ''" name="email"></p>
     <p><input placeholder="First name" oninput="this.className = ''" name="fname"></p>
     <p><input placeholder="Last name" oninput="this.className = ''" name="lname"></p>
@@ -43,11 +38,9 @@
   <div class="tab">Addresses:
     <p><input placeholder="Address 1" oninput="this.className = ''" name="address_1"></p>
     <p><input placeholder="Address 2" oninput="this.className = ''" name="address_2"></p>
-    <select id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select>
+    <p><input placeholder="Country" oninput="this.className = ''" name="country"></p>
+
+
     <p><input placeholder="City/Town" oninput="this.className = ''" name="city"></p>
     <p><input placeholder="Postcode/Zip" oninput="this.className = ''" name="post_code"></p>
     <p><input placeholder="Store Phone" oninput="this.className = ''" name="store_phone"></p>
@@ -57,6 +50,11 @@
   <div class="tab">Login Info:
     <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
     <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+    <input type="file" id="myFile" name="filename">
+    <p class="small text-muted mb-0">Upload your shop profile picture
+
+
+    
   </div>
   <div style="overflow:auto;">
     <div style="float:right;">
