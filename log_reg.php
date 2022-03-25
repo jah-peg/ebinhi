@@ -12,11 +12,12 @@ if(isset($_POST['login'])) {
     $verify_statement = $database->verify_customers($username, $password);
     
 
-    if(!$verify_statement) {
-        echo "Failed!";
-    } else {
-        echo '<script> alert("Success!") </script';
+    if($verify_statement) {
+        echo '<script> alert("Success!"); </script>';
         $_SESSION['user'] = $verify_statement;
+		header("Location: user_home.php");
+    } else {
+        echo '<script> alert("Failed!"); </script>';
 		header("Location: user_home.php");
     }   
 }
@@ -42,6 +43,7 @@ if(isset($_POST['register'])) {
         header("Location: log_reg.php");
     }
 }
+
 
 
 ?>

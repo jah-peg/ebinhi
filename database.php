@@ -54,8 +54,8 @@ class Database {
     }
   }
 
-  public function create_seller($sql) {
-    $sql = "INSERT INTO users(full_name, username, email, password, role) VALUES(CONCAT('$firstname', '$lastname'), '$userName', '$email', '$encrypted_pass','vendor');";
+  public function create_seller($fullname, $username, $email, $encrypted_pass) {
+    $sql = "INSERT INTO users(full_name, username, email, password, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass','vendor');";
     $retval = mysqli_query($this->connection, $sql);
     if($retval) {
       return true;
@@ -63,6 +63,21 @@ class Database {
       return false;
     }
   }
+
+  public function verify_seller($userName, $password) {
+    $sql = "SELECT * FROM `users` WHERE `username` = '$userName';";
+    $result = mysqli_query($this->connection, $sql);
+
+    if(mysqli_num_rows($result)) {
+      $row = mysqli_fetch_assoc($result);
+      if(password_verify($password, $row['password'])) {
+        return $row['id'];
+      }
+    } else {
+      return false;
+    }
+  }
+
 }
 
 
