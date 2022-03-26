@@ -18,139 +18,81 @@
       </div>
     </div>
 </div>
+</div>
+</div>
    
 <!-- END OF CAROUSEL -->
 
 
 <!-- REGISTRATION -->
 
-<form id="regForm" action="action_page.php" method="POST">
-  <p class="header_form">Registration</p>
-  <!-- One "tab" for each step in the form: -->
-  <div class="tab">
-    <p><input placeholder="Username" oninput="this.className = ''" name="username"></p>
-    <p><input placeholder="Email" oninput="this.className = ''" name="email"></p>
-    <p><input placeholder="First name" oninput="this.className = ''" name="firstname"></p>
-    <p><input placeholder="Last name" oninput="this.className = ''" name="lastname"></p>
-    <p><input placeholder="Store name" oninput="this.className = ''" name="store_name"></p>
-    <p class="small text-muted mb-0"> https://www.ekadiwa.da.gov.ph/shop/[your_store]
-  </div>
-  <div class="tab">Addresses:
-    <p><input placeholder="Address 1" oninput="this.className = ''" name="address_1"></p>
-    <p><input placeholder="Address 2" oninput="this.className = ''" name="address_2"></p>
-    <p><input placeholder="Country" oninput="this.className = ''" name="country"></p>
+<form action="/action_page.php">
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
 
-
-    <p><input placeholder="City/Town" oninput="this.className = ''" name="city"></p>
-    <p><input placeholder="Postcode/Zip" oninput="this.className = ''" name="post_code"></p>
-    <p><input placeholder="Store Phone" oninput="this.className = ''" name="store_phone"></p>
-  
-  </div>
-
-  <div class="tab">Login Info:
-    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-    <p><input placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
-    <input type="file" id="myFile" name="filename">
-    <p class="small text-muted mb-0">Upload your shop profile picture
-
-
+ 	<label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="" name="uname" id="uname" required>
     
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="" name="email" id="email" required>
+    
+    <label for="firstname"><b>First Name</b></label>
+    <input type="text" placeholder="" name="firstname" id="firstname" required>
+    
+    <label for="laststname"><b>Last Name</b></label>
+    <input type="text" placeholder="" name="lastname" id="lastname" required>
+    
+    <label for="storename"><b>Store Name</b></label>
+    <input type="text" placeholder="https://www.eBinhi.da.gov.ph/shop/[your_store]" name="firstname" 			id="firstname" required>
+    
+    <label for="address_1"><b>Address 1</b></label>
+    <input type="text" placeholder="" name="address_1" id="address_1" required>
+    
+    <label for="address_2"><b>Address 2</b></label>
+    <input type="text" placeholder="" name="address_2" id="address_2" required>
+    
+    <label for="country"><b>Country</b></label>
+    <input type="text" placeholder="" name="country" id="country" required>
+    
+    <label for="city_town"><b>City/Town</b></label>
+    <input type="text" placeholder="" name="city_town" id="city_town" required>
+    
+    
+    <label for="postcode"><b>Postcode/Zip</b></label>
+    <input type="text" placeholder="" name="postcode" id="postcode" required>
+    
+    <label for="s_phone"><b>Store Phone</b></label>
+    <input type="text" placeholder="" name="s_phone" id="s_phone" required>
+    
+    <label for="city_town"><b>City/Town</b></label>
+    <input type="text" placeholder="" name="city_town" id="city_town" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    
+    <label for="file"><b>Upload your store Profile Picture</b></label><br>
+    <input type="file" id="myFile" name="filename">
+  
+    <hr>
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+    <button type="submit" class="registerbtn">Register</button>
   </div>
-  <div style="overflow:auto;">
-    <div style="float:right;">
-      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-    </div>
-  </div>
-  <!-- Circles which indicates the steps of the form: -->
-  <div style="text-align:center;margin-top:40px;">
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
-    <span class="step"></span>
+  
+  <div class="container signin">
+    <p>Already have an account? <a href="log_reg.php">Sign in</a>.</p>
   </div>
 </form>
 </div>
+
 
 <?php
 include_once 'footer.php';
 ?>
 
 <!-- END OF REGISTRATION -->
-
-<script>
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-    document.getElementById("nextBtn").type = "submit";
-    document.getElementById("nextBtn").setAttribute("name", "submit");
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
-  }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    // ... the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
-    }
-  }
-  // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
-    document.getElementsByClassName("step")[currentTab].className += " finish";
-  }
-  return valid; // return the valid status
-}
-
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class on the current step:
-  x[n].className += " active";
-}
-</script>
