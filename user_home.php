@@ -31,6 +31,9 @@
 
    <?php echo $result['username']; ?> <br>
    <?php echo $result['email']; ?> <br>
+   <img src="uploads/<?php echo $result['photo']; ?>" alt=""> <br>
+   <?php echo $result['phone']; ?> <br>
+   <?php echo $result['address']; ?> <br>
    <?php echo $result['role']; ?> <br>
    <?php echo $result['status']; ?> <br>
    <button><a href="logout.php">Logout</a></button>

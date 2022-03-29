@@ -54,8 +54,8 @@ class Database {
     }
   }
 
-  public function create_seller($fullname, $username, $email, $encrypted_pass) {
-    $sql = "INSERT INTO users(full_name, username, email, password, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass','vendor');";
+  public function create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $address) {
+    $sql = "INSERT INTO users(full_name, username, email, password, photo, phone, address, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass', '$photo', '$phone', '$address', 'vendor');";
     $retval = mysqli_query($this->connection, $sql);
     if($retval) {
       return true;
