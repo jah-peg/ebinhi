@@ -28,16 +28,13 @@ class Database {
     }
   }
 
-  // verifying of credentials for the customers
-  public function verify_customers($userName, $password) {
-    $sql = "SELECT * FROM `users` WHERE `username` = '$userName';";
+  // verifying of credentials
+  public function verify($userName, $password) {
+    $sql = "SELECT * FROM `users` WHERE `username` = '$userName' LIMIT 1;";
     $result = mysqli_query($this->connection, $sql);
 
     if(mysqli_num_rows($result)) {
-      $row = mysqli_fetch_assoc($result);
-      if(password_verify($password, $row['password'])) {
-        return $row['id'];
-      }
+      return $result;
     } else {
       return false;
     }
@@ -54,6 +51,14 @@ class Database {
     }
   }
 
+  public function read_all($sql) {
+    if(!empty($sql)) {
+      return $result = mysqli_query($this->connection, $sql);
+    } else {
+      return false;
+    }
+  }
+
   public function create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $address) {
     $sql = "INSERT INTO users(full_name, username, email, password, photo, phone, address, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass', '$photo', '$phone', '$address', 'vendor');";
     $retval = mysqli_query($this->connection, $sql);
@@ -64,15 +69,21 @@ class Database {
     }
   }
 
-  public function verify_seller($userName, $password) {
-    $sql = "SELECT * FROM `users` WHERE `username` = '$userName';";
-    $result = mysqli_query($this->connection, $sql);
+  public function create_admin($fullname, $username, $email, $encrypted_pass) {
+    $sql = "INSERT INTO users(full_name, username, email, password, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass', 'admin');";
+    $retval = mysqli_query($this->connection, $sql);
+    if($retval) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-    if(mysqli_num_rows($result)) {
-      $row = mysqli_fetch_assoc($result);
-      if(password_verify($password, $row['password'])) {
-        return $row['id'];
-      }
+  public function create_category($category) {
+    $sql = "INSERT INTO categories(category) VALUES('$category');";
+    $retval = mysqli_query($this->connection, $sql);
+    if($retval) {
+      return true;
     } else {
       return false;
     }

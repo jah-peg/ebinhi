@@ -9,17 +9,22 @@ if(isset($_POST['login'])) {
     $password = $_POST['password'];
     $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
     
-    $verify_statement = $database->verify_customers($username, $password);
+    $verify_statement = $database->verify($username, $password);
     
+    $row = mysqli_fetch_assoc($verify_statement);
 
-    if($verify_statement) {
-        echo '<script> alert("Success!"); </script>';
-        $_SESSION['user'] = $verify_statement;
-		header("Location: user_home.php");
-    } else {
-        echo '<script> alert("Failed!"); </script>';
-		header("Location: user_home.php");
-    }   
+    if($row['role'] == 'admin') {
+        $_SESSION['user'] = $row['id']; 
+        header('Location: admin/index.php');
+    } else if ($row['role'] == 'vendor') {
+        $_SESSION['user'] = $row['id'];
+        header('Location: vendor/vendor.php');
+    } else if ($row['role'] == 'customer') {
+        $_SESSION['user'] = $row['id'];
+        header('Location: user_home.php');
+    }
+        
+    echo '<script> alert("Failed!"); </script>'; 
 }
 ?>
 

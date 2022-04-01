@@ -2,7 +2,7 @@
    
    session_start();
    if(!isset($_SESSION['user'])) {
-      header("location: ../login_regi.php");
+      header("location: ../log_reg.php");
    }
 
    include_once('database.php');
