@@ -33,3 +33,14 @@ CREATE TABLE `final_ecomm`.`users` (
    `updated_at` TIMESTAMP NULL DEFAULT NULL ,
    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+
+
+CREATE TABLE `final_ecomm`.`categories` ( 
+   `id` INT NOT NULL AUTO_INCREMENT , 
+   `parent_id` INT NOT NULL DEFAULT '0' , 
+   `category` VARCHAR(255) NOT NULL , 
+   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+   `updated_at` TIMESTAMP NULL DEFAULT NULL , 
+   PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
