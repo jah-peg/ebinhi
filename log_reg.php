@@ -18,7 +18,7 @@ if(isset($_POST['login'])) {
         header('Location: admin/index.php');
     } else if ($row['role'] == 'vendor') {
         $_SESSION['user'] = $row['id'];
-        header('Location: vendor/vendor.php');
+        header('Location: vendor/index.php');
     } else if ($row['role'] == 'customer') {
         $_SESSION['user'] = $row['id'];
         header('Location: user_home.php');

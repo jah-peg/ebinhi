@@ -89,6 +89,14 @@ class Database {
     }
   }
 
+  public function read_category($sql) {
+    
+    if(isset($sql)) {
+      return $result = mysqli_query($this->connection, $sql);
+    } else {
+      return false;
+    }
+  }
 }
 
 
