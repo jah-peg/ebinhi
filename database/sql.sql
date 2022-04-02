@@ -44,3 +44,25 @@ CREATE TABLE `final_ecomm`.`categories` (
    `updated_at` TIMESTAMP NULL DEFAULT NULL , 
    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+
+CREATE TABLE `final_ecomm`.`products` ( 
+   `id` INT NOT NULL AUTO_INCREMENT , 
+   `title` VARCHAR(255) NOT NULL , 
+   `summary` TEXT NOT NULL , 
+   `description` TEXT NOT NULL , 
+   `stock` INT NOT NULL , 
+   `category_id` INT NOT NULL , 
+   `photo` VARCHAR(255) NOT NULL , 
+   `price` FLOAT NOT NULL , 
+   `vendor_id` INT NOT NULL , 
+   `status` ENUM('Active','Inactive') NOT NULL DEFAULT 'Active' , 
+   `created_at` INT NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+   `updated_at` INT NULL DEFAULT NULL , 
+   PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+
+ALTER TABLE `products` ADD INDEX(`vendor_id`);
+
+ALTER TABLE `products` ADD CONSTRAINT `fk_vendor_id` FOREIGN KEY (`vendor_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
