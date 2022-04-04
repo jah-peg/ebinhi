@@ -2,13 +2,35 @@
 session_start();
 include_once('../database.php'); 
 
-$sql = "SELECT * FROM `categories`;";
-$result = $database->read_all($sql);
+$category_sql = "SELECT * FROM categories";
+$category_result = $database->read_all($category_sql);
 
 if(isset($_POST['register'])) {
+    $title = $_POST['title'];
+    $summary = $_POST['summary'];
+    $description = $_POST['description'];
+    $stock = $_POST['stock'];
+    $category = $_POST['category'];
+    $price = $_POST['price'];
+
+    $vendor_id = $_SESSION['user'];
+
+    $product_photo = $_FILES['photo']['name'];
+    $tmp = $_FILES['photo']['tmpname'];
+    $folder_upload = "product_upload/" . $product_photo;
     
-    
-}
+    $create_product_statement = $database->create_product($title, $summary, $description, $stock, $category, $product_photo, $price, $vendor_id);
+
+    if($create_product_statement === true) {
+        if(move_uploaded_file($tmp, $folder_upload)) {
+            header('Location: index.php');
+        } else {
+            die('Failed to upload image.');
+        }
+    } else {
+        die();
+    }
+}  
 ?>
 
 
@@ -80,21 +102,23 @@ if(isset($_POST['register'])) {
                                         <label for="category" class=" form-control-label">Category</label>
                                         <select name="category" id="category" class="form-control">
                                             <option value="" disabled selected hidden>Choose a Category</option>
-
                                             
-                                                <option value="">
-                                                    
-                                                </option>
-                                            
-
+                                            <?php while($row = mysqli_fetch_assoc($category_result)) { ?>
+                                            <option value="<?php echo($row['id']); ?>"><?php echo($row['category']); ?></option>
+                                            <?php }?>
                                         </select>
-                                        
-                                        
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="file">Upload Product Picture</label><br>
+                                        <input type="file" id="myPhoto" name = "photo">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="price" class=" form-control-label">Price</label>
+                                        <input type="text" id="price" placeholder="e.g. 150.00" class="form-control" name="price">
                                     </div>
                                     
-                                    <?php while($row = mysqli_fetch_assoc($result)) {?>
-                                        <?php echo($row['category']); ?>
-                                    <?php }?>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary btn-sm" name="register">

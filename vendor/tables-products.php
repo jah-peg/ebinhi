@@ -7,11 +7,10 @@
 
    include_once('../database.php');
 
-   $user = new Database();
 
    // fetch user information in the database
-   $sql = "SELECT * FROM categories;";
-   $result = $user->read_all($sql);
+   $sql = "SELECT * FROM products;";
+   $result = $database->read_all($sql);
    
 ?>
 

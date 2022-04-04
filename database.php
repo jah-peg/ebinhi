@@ -91,8 +91,18 @@ class Database {
 
   public function read_category($sql) {
     
-    if(isset($sql)) {
+    if(mysqli_query($this->connection, $sql)) {
       return $result = mysqli_query($this->connection, $sql);
+    } else {
+      return false;
+    }
+  }
+
+  public function create_product($title, $summary, $description, $stock, $category, $photo, $price, $vendor_id) {
+    $sql = "INSERT INTO products(title, summary, description, stock, category_id, photo, price, vendor_id) VALUES('$title', '$summary', '$description', '$stock', '$category', '$photo', '$price', '$vendor_id');";
+    $retval = mysqli_query($this->connection, $sql);
+    if($retval) {
+      return true;
     } else {
       return false;
     }
