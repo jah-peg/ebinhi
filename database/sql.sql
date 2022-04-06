@@ -66,3 +66,8 @@ CREATE TABLE `final_ecomm`.`products` (
 ALTER TABLE `products` ADD INDEX(`vendor_id`);
 
 ALTER TABLE `products` ADD CONSTRAINT `fk_vendor_id` FOREIGN KEY (`vendor_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE `products` ADD INDEX(`category_id`);
+
+ALTER TABLE `products` ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
