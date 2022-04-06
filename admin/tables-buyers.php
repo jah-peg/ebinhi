@@ -5,17 +5,14 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('../database.php');
+   include_once('../controller/customerController.php');
 
-   $user = new Database();
 
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE role = 'customer'";
-   $result = $user->read_all($sql);
+   $result = $customer->read_customers($sql);
    
 ?>
-
-
 
 
 <?php include_once 'layout/sidebar.php' ?>

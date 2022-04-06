@@ -5,21 +5,17 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('database.php');
-
-   $user = new Database();
+   include_once('controller/customerController.php');
 
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE id = '".$_SESSION['user']."'";
 
    $category_sql = "SELECT * FROM categories";
-   $category_result = $user->read_all($category_sql);
+   $category_result = $customer->read_customers($category_sql);
 
-   $result = $user->read_customers($sql);
+   $result = $customer->read_customers($sql);
 
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -41,16 +37,5 @@
    <?php echo $result['role']; ?> <br>
    <?php echo $result['status']; ?> <br>
    <button><a href="logout.php">Logout</a></button>
-
-
-
-
-
-
-   <?php 
-   while($row = mysqli_fetch_assoc($category_result)) {
-      echo($row['category'] . "<br>");
-   }
-   ?>
 </body>
 </html>

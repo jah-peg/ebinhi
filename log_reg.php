@@ -1,7 +1,8 @@
 <?php 
 session_start();
 
-include_once('database.php');
+include_once('controller/database.php');
+include_once('controller/customerController.php');
 
 // this is for login script
 if(isset($_POST['login'])) {
@@ -9,7 +10,7 @@ if(isset($_POST['login'])) {
     $password = $_POST['password'];
     $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
     
-    $verify_statement = $database->verify($username, $password);
+    $verify_statement = $customer->verify_customer($username, $password);
     
     $row = mysqli_fetch_assoc($verify_statement);
 
@@ -23,9 +24,8 @@ if(isset($_POST['login'])) {
         $_SESSION['user'] = $row['id'];
         header('Location: user_home.php');
     }
-        
-    echo '<script> alert("Failed!"); </script>'; 
 }
+
 ?>
 
 
@@ -38,7 +38,7 @@ if(isset($_POST['register'])) {
 
     $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
 
-    $create_customer_statement = $database->create_customers($username, $email, $encrypted_pass);
+    $create_customer_statement = $customer->create_customers($username, $email, $encrypted_pass);
 
     if($create_customer_statement) {
         echo '<script> alert("Success!") </script>';
@@ -49,11 +49,7 @@ if(isset($_POST['register'])) {
     }
 }
 
-
-
 ?>
-
-
 
 
 <?php
@@ -91,10 +87,10 @@ if(isset($_POST['register'])) {
                     <h3>Login</h3>
                     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email or Username" value="" name="username" />
+                            <input type="text" class="form-control" placeholder="Email or Username" value="" name="username" required/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password " value="" name="password" />
+                            <input type="password" class="form-control" placeholder="Password " value="" name="password" required/>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btnSubmit" value="Login" name="login" />
@@ -108,13 +104,13 @@ if(isset($_POST['register'])) {
                     <h3>Register</h3>
                     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email " value="" name="email" />
+                            <input type="text" class="form-control" placeholder="Email " value="" name="email" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username" value="" name="username" />
+                            <input type="text" class="form-control" placeholder="Username" value="" name="username" required/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password " value="" name="password" />
+                            <input type="password" class="form-control" placeholder="Password " value="" name="password" required/>
                         </div>
 
                         <div class="form-group">

@@ -5,13 +5,11 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('../database.php');
-
-   $user = new Database();
+   include_once('../controller/vendorController.php');
 
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE role = 'vendor'";
-   $result = $user->read_all($sql);
+   $result = $vendor->read_vendor($sql);
    
 ?>
 
