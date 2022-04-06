@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once('database.php');
+include_once('controller/vendorController.php');
 
 $error = "";
 
@@ -29,7 +29,7 @@ $error = "";
     if($password == $confirm_password) {
       $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
 
-      $create_seller_statement = $database->create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $complete_address);
+      $create_seller_statement = $vendor->create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $complete_address);
     
       if($create_seller_statement) {
         if(move_uploaded_file($tmpname, $folder)) {

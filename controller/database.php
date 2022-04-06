@@ -17,28 +17,9 @@ class Database {
     }
   }
 
-  // registration of new customers
-  public function create_customers($userName, $email, $encrypted_pass) {
-    $sql = "INSERT INTO users(username, email, password) VALUES('$userName', '$email', '$encrypted_pass');";
-    $retval = mysqli_query($this->connection, $sql);
-    if($retval) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  
 
-  // verifying of credentials
-  public function verify($userName, $password) {
-    $sql = "SELECT * FROM `users` WHERE `username` = '$userName' LIMIT 1;";
-    $result = mysqli_query($this->connection, $sql);
-
-    if(mysqli_num_rows($result)) {
-      return $result;
-    } else {
-      return false;
-    }
-  }
+  
 
   public function read_customers($sql) {
     $result = mysqli_query($this->connection, $sql);
@@ -59,25 +40,9 @@ class Database {
     }
   }
 
-  public function create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $address) {
-    $sql = "INSERT INTO users(full_name, username, email, password, photo, phone, address, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass', '$photo', '$phone', '$address', 'vendor');";
-    $retval = mysqli_query($this->connection, $sql);
-    if($retval) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  
 
-  public function create_admin($fullname, $username, $email, $encrypted_pass) {
-    $sql = "INSERT INTO users(full_name, username, email, password, role) VALUES('$fullname', '$username', '$email', '$encrypted_pass', 'admin');";
-    $retval = mysqli_query($this->connection, $sql);
-    if($retval) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  
 
   public function create_category($category) {
     $sql = "INSERT INTO categories(category) VALUES('$category');";
