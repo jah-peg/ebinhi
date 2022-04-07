@@ -1,9 +1,10 @@
 <?php
 session_start();
-include_once('../database.php'); 
+include_once('../controller/productController.php'); 
+include_once('../controller/categoryController.php');
 
 $category_sql = "SELECT * FROM categories";
-$category_result = $database->read_all($category_sql);
+$category_result = $categ->read_category($category_sql);
 
 if(isset($_POST['register'])) {
     $title = $_POST['title'];
@@ -15,23 +16,22 @@ if(isset($_POST['register'])) {
 
     $vendor_id = $_SESSION['user'];
 
-    $product_photo = $_FILES['photo']['name'];
-    $tmp = $_FILES['photo']['tmpname'];
+    $product_photo = $_FILES['file']['name'];
+    $tmp = $_FILES['file']['tmp_name'];
     $folder_upload = "product_upload/" . $product_photo;
     
-    $create_product_statement = $database->create_product($title, $summary, $description, $stock, $category, $product_photo, $price, $vendor_id);
+    $create_product_statement = $product->create_product($title, $summary, $description, $stock, $category, $product_photo, $price, $vendor_id);
 
-    if($create_product_statement === true) {
+    if($create_product_statement) {
         if(move_uploaded_file($tmp, $folder_upload)) {
             header('Location: index.php');
         } else {
             die('Failed to upload image.');
         }
-    } else {
-        die();
     }
 }  
 ?>
+
 
 
 <?php include_once 'layout/sidebar.php' ?>
@@ -74,7 +74,7 @@ if(isset($_POST['register'])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+                            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-header"><strong>Add New Product</strong><small> Form</small></div>
                                 <div class="card-body card-block">
                                     <div class="form-group">
@@ -111,7 +111,7 @@ if(isset($_POST['register'])) {
 
                                     <div class="form-group">
                                         <label for="file">Upload Product Picture</label><br>
-                                        <input type="file" id="myPhoto" name = "photo">
+                                        <input type="file" id="myPhoto" name="file">
                                     </div>
 
                                     <div class="form-group">

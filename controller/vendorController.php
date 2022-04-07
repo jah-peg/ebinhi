@@ -24,6 +24,15 @@ class vendorController {
    }
 
    public function read_vendor($sql) {
+      // $result = mysqli_query($this->connection, $sql);
+
+      // if($result) {
+      //    $row = mysqli_fetch_assoc($result);
+      //    return $row;
+      // } else {
+      //    return false;
+      // }
+
       if(!empty($sql)) {
          return $result = mysqli_query($this->connection, $sql);
       } else {

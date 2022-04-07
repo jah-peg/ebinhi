@@ -5,13 +5,12 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('../database.php');
+   include_once('../controller/vendorController.php');
 
-   $user = new Database();
-
+   
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE id = '".$_SESSION['user']."'";
-   $result = $user->read_customers($sql);
+   $result = $vendor->read_vendor($sql);
 
 ?>
 
