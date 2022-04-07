@@ -5,13 +5,12 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('../database.php');
+   include_once('../controller/productController.php');
 
 
    // fetch user information in the database
-   $sql = "SELECT * FROM products;";
-   $result = $database->read_all($sql);
-   
+   $sql = "SELECT * FROM products WHERE vendor_id = ".$_SESSION['user'].";";
+   $result = $product->read_product($sql);
 ?>
 
 
@@ -61,11 +60,15 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Full Name</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Date Registered</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Summary</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Stock</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Photo</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Vendor</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>

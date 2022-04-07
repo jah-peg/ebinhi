@@ -5,14 +5,12 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('../database.php');
-
-   $user = new Database();
+   include_once('../controller/vendorController.php');
 
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE id = '".$_SESSION['user']."'";
-   $result = $user->read_customers($sql);
-
+   $result = $vendor->read_vendor($sql);
+   $row = mysqli_fetch_assoc($result);
 ?>
 
 
@@ -61,18 +59,18 @@
                     </div>
                     <div class="card-body">
                         <div class="mx-auto d-block">
-                            <img src="../uploads/<?php echo $result['photo']; ?>" class="rounded-circle mx-auto d-block"alt="Card image cap" width="400px">
-                            <h5 class="text-sm-center mt-2 mb-1"><?php echo $result['username'];?></h5>
+                            <img src="../uploads/<?php echo $row['photo']; ?>" class="rounded-circle mx-auto d-block"alt="Card image cap" width="400px">
+                            <h5 class="text-sm-center mt-2 mb-1"><?php echo $row['username'];?></h5>
                         </div>
                         <hr>
                         <div class="card-text text-sm-center">
                             <h6 class="text-sm-center mt-2 mb-1">Information</h6>
-                            <?php echo $result['full_name']; ?> <br>
-                            <?php echo $result['email']; ?> <br>
-                            <?php echo $result['phone']; ?> <br>
-                            <?php echo $result['address']; ?> <br>
-                            <?php echo $result['role']; ?> <br>
-                            <?php echo $result['status']; ?> <br>
+                            <?php echo $row['full_name']; ?> <br>
+                            <?php echo $row['email']; ?> <br>
+                            <?php echo $row['phone']; ?> <br>
+                            <?php echo $row['address']; ?> <br>
+                            <?php echo $row['role']; ?> <br>
+                            <?php echo $row['status']; ?> <br>
                         </div>
                     </div>
                 </div>

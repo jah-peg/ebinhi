@@ -4,14 +4,12 @@
       header("location: ../log_reg.php");
    }
 
-   include_once('../database.php');
-
-   $user = new Database();
+   include_once('../controller/vendorController.php');
 
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE id = '".$_SESSION['user']."'";
-   $result = $user->read_customers($sql);
-
+   $result = $vendor->read_vendor($sql);
+   $row = mysqli_fetch_assoc($result);
 ?>
     
     
@@ -30,7 +28,7 @@
     <div class="col-sm-5">
         <div class="user-area dropdown float-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="user-avatar rounded-circle" src="../uploads/<?php echo $result['photo']; ?>" alt="User Avatar">
+                <img class="user-avatar rounded-circle" src="../uploads/<?php echo $row['photo']; ?>" alt="User Avatar">
             </a>
 
             <div class="user-menu dropdown-menu">
