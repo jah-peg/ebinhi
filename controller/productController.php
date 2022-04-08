@@ -25,11 +25,20 @@ class productController {
    }
 
    public function read_product($sql) {
-      if(mysqli_query($this->connection, $sql)) {
+      if(isset($sql)) {
          return $result = mysqli_query($this->connection, $sql);
-       } else {
+      } else {
          return false;
-       }
+      }
+   }
+
+   public function list_product($sql) {
+      $result = mysqli_query($this->connection, $sql);
+		while($row=mysqli_fetch_assoc($result)) {
+			$resultset[] = $row;
+		}		
+		if(!empty($resultset))
+			return $resultset;
    }
 
    

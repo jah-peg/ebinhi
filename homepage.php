@@ -1,5 +1,3 @@
-
-
 <!-- Suppliers/Exporter -->
 <div class="container-fluid mx-y">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -159,38 +157,71 @@
 
 <!-- Categories -->
 
+
+<?php 
+include_once('controller/categoryController.php');
+$show_category_sql = "SELECT * FROM categories;";
+$list_of_category = $categ->read_category($show_category_sql);
+// while($rows = mysqli_fetch_assoc($list_of_category)) {
+//   echo $rows['category'];
+// }
+?>
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-3">
             <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">
-                    <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
-                    <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
-                    <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
-                    <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
-                    <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li>
-                    <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
-                    <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
-                    <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li>
+                    <?php 
+                    while($category_rows = mysqli_fetch_assoc($list_of_category)) {
+                      echo "<li class='list-group-item'>" . $category_rows['category'] . "</li>";
+                    }
+                    ?>
                 </ul>
             </div>
 <!--End of Categories -->
 
 
 <!--Products -->
-
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-warning text-white text-uppercase">Last product</div>
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">PRODUCT TITLE</h5>
-                    <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0">99.00 $</p>
-                </div>
-            </div>
+          <div class="card bg-light mb-3">
+              <div class="card-header bg-warning text-white text-uppercase">Last product</div>
+              <div class="card-body">
+                  <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
+                  <h5 class="card-title">PRODUCT TITLE</h5>
+                  <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p class="card-text mb-0">99.00 $</p>
+              </div>
+          </div>
         </div>
-        <div class="col">
+
+        <?php
+        include_once('controller/productController.php');
+        $sql = "SELECT * FROM products";
+        $result = $product->list_product($sql); 
+        
+        if(!empty($result)) {
+          foreach($result as $key=>$value) {
+        ?>
+
+        <form action="cart.php" method="POST">
+          <div class="card" style="width: 18rem;">
+            <div class="product-img">
+              <img src="<?php echo "vendor/product_upload/" . $result[$key]['photo'];?>" alt="Product Photo" width="350px" height="230px" style="object-fit: cover;">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title mb-0"><?php echo $result[$key]['title']; ?></h5>
+              <p class="card-desc"><?php echo $result[$key]['summary']; ?></p>
+              <p class="card-text mb-0">₱ <?php echo $result[$key]['price'] ?></p>
+              <a href="#" class="btn btn-cart">ADD TO CART</a>
+            </div>
+          </div>
+        </form>
+        <?php 
+          }
+        }
+        
+        ?>
+
         <p class = shops >Suppliers</p>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4">

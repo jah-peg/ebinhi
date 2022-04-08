@@ -25,12 +25,13 @@ class categoryController {
    }
 
    public function read_category($sql) {
-      if(mysqli_query($this->connection, $sql)) {
+      if(!empty($sql)) {
          return $result = mysqli_query($this->connection, $sql);
        } else {
          return false;
        }
    }
+
 
    public function update_category() {
 
