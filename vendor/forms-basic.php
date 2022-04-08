@@ -28,6 +28,8 @@ if(isset($_POST['register'])) {
         } else {
             die('Failed to upload image.');
         }
+    } else {
+        die($title . "<br>" . $summary . "<br>" . $description . "<br>" . $stock . "<br>" . $category . "<br>" . $product_photo . "<br>" . $price . "<br>" . $vendor_id);
     }
 }  
 ?>
@@ -94,7 +96,7 @@ if(isset($_POST['register'])) {
 
                                     <div class="form-group">
                                         <label for="stock" class=" form-control-label">Stock</label>
-                                        <input type="text" id="stock" placeholder="Enter your number of stocks" class="form-control" name="stock">
+                                        <input type="number" id="stock" placeholder="Enter your number of stocks" class="form-control" name="stock">
                                     </div>
 
                                     
@@ -116,7 +118,7 @@ if(isset($_POST['register'])) {
 
                                     <div class="form-group">
                                         <label for="price" class=" form-control-label">Price</label>
-                                        <input type="text" id="price" placeholder="e.g. 150.00" class="form-control" name="price">
+                                        <input type="price" id="price" placeholder="e.g. 150.00" class="form-control" name="price">
                                     </div>
                                     
                                 </div>

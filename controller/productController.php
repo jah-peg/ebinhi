@@ -35,14 +35,8 @@ class productController {
    
 
 
-
-
-
 }
-
-
 
 $product = new productController();
 $product->db_connect();
-
 ?>

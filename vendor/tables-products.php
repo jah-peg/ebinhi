@@ -14,6 +14,7 @@
 ?>
 
 
+   
 
 
 <?php include_once 'layout/sidebar.php' ?>
@@ -75,11 +76,14 @@
                                         <?php while($row = mysqli_fetch_assoc($result)) { ?>
                                         <tr>
                                             <th scope="row"><?php echo $row['id']; ?></th>
-                                            <td><?php echo $row['full_name']; ?></td>
-                                            <td><?php echo $row['username']; ?></td>
-                                            <td><?php echo $row['email']; ?></td>
-                                            <td><?php echo $row['status']; ?></td>
-                                            <td><?php echo $row['created_at']; ?></td>
+                                            <td><?php echo $row['title']; ?></td>
+                                            <td><?php echo $row['summary']; ?></td>
+                                            <td><?php echo $row['description']; ?></td>
+                                            <td><?php echo $row['stock']; ?></td>
+                                            <td><?php echo $row['category']; ?></td>
+                                            <td><?php echo $row['photo']; ?></td>
+                                            <td><?php echo $row['price']; ?></td>
+                                            <td><?php echo $row['vendor']; ?></td>
                                         </tr>
                                         <?php }?>
                                     </tbody>

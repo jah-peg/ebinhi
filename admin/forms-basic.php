@@ -1,5 +1,5 @@
 <?php
-include_once('../database.php'); 
+include_once('../controller/adminController.php'); 
 
 if(isset($_POST['register'])) {
     $fullname = $_POST['fullname'];
@@ -11,7 +11,7 @@ if(isset($_POST['register'])) {
     if($password == $confirm_password) {
         $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
 
-        $create_admin_statement = $database->create_admin($fullname, $username, $email, $encrypted_pass);
+        $create_admin_statement = $admin->create_admin($fullname, $username, $email, $encrypted_pass);
 
         if($create_admin_statement) {
             echo '<script> alert("Success!") </script>';

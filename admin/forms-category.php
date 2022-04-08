@@ -1,10 +1,10 @@
 <?php
-include_once('../database.php'); 
+include_once('../controller/categoryController.php'); 
 
 if(isset($_POST['register'])) {
     $category = $_POST['category'];
 
-    $create_category_statement = $database->create_category($category);
+    $create_category_statement = $categ->create_category($category);
 
     if($create_category_statement) {
         echo '<script> alert("Success!") </script>';
@@ -60,14 +60,6 @@ if(isset($_POST['register'])) {
                                 <div class="card-header"><strong>Add Category</strong><small> Form</small></div>
                                 <div class="card-body card-block">
                                     <div class="form-group"><label for="category" class="form-control-label">Category Name</label><input type="text" id="category" placeholder="Enter category name" class="form-control" name="category"></div>
-                                    <div class="form-group">
-                                        <label for="parent_id" class=" form-control-label">Parent Category <small>(If applicable)</small></label>
-                                        <select id="parent_id" name="parent_id" class="form-control">
-                                            <option>Category #1</option>
-                                            <option>Category #2</option>
-                                            <option>Category #3</option>
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary btn-sm" name="register">

@@ -27,7 +27,8 @@ class customerController {
 
    public function read_customers($sql) {
       if(!empty($sql)) {
-         return $result = mysqli_query($this->connection, $sql);
+         $result = mysqli_query($this->connection, $sql);
+         return $row = mysqli_fetch_assoc($result);
       } else {
          return false;
       }
