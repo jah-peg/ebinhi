@@ -203,10 +203,10 @@ $list_of_category = $categ->read_category($show_category_sql);
           foreach($result as $key=>$value) {
         ?>
 
-        <form action="cart.php" method="POST">
-          <div class="card" style="width: 18rem;">
+        <form action="cart.php" method="POST" style="height:fit-content">
+          <div class="card">
             <div class="product-img">
-              <img src="<?php echo "vendor/product_upload/" . $result[$key]['photo'];?>" alt="Product Photo" width="350px" height="230px" style="object-fit: cover;">
+              <img src="<?php echo "vendor/product_upload/" . $result[$key]['photo'];?>" alt="Product Photo" class="img-fluid">
             </div>
             <div class="card-body">
               <h5 class="card-title mb-0"><?php echo $result[$key]['title']; ?></h5>

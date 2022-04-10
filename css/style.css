@@ -135,6 +135,14 @@ svg
 {
 	border-radius: 50px;
 }
+
+.product-img , .img-fluid
+{
+	width: 230px;
+	height: 230px;
+	object-fit: cover;
+}
+
 .navbar
 {
 	margin-top: 30px;
