@@ -158,6 +158,7 @@
 <!-- Categories -->
 
 
+
 <?php 
 include_once('controller/categoryController.php');
 $show_category_sql = "SELECT * FROM categories;";
@@ -183,142 +184,50 @@ $list_of_category = $categ->read_category($show_category_sql);
 
 
 <!--Products -->
-          <div class="card bg-light mb-3">
-              <div class="card-header bg-warning text-white text-uppercase">Last product</div>
-              <div class="card-body">
-                  <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                  <h5 class="card-title">PRODUCT TITLE</h5>
-                  <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text mb-0">99.00 $</p>
-              </div>
-          </div>
+          
         </div>
-
+          
         <?php
         include_once('controller/productController.php');
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products LIMIT 7;";
         $result = $product->list_product($sql); 
-        
         if(!empty($result)) {
           foreach($result as $key=>$value) {
         ?>
-
-        <form action="cart.php" method="POST" style="height:fit-content">
-          <div class="card">
-            <div class="product-img">
-              <img src="<?php echo "vendor/product_upload/" . $result[$key]['photo'];?>" alt="Product Photo" class="img-fluid">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title mb-0"><?php echo $result[$key]['title']; ?></h5>
-              <p class="card-desc"><?php echo $result[$key]['summary']; ?></p>
-              <p class="card-text mb-0">₱ <?php echo $result[$key]['price'] ?></p>
-              <a href="#" class="btn btn-cart">ADD TO CART</a>
-            </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <form action="cart.php" method="POST" action="action.php">
+              <div class="card mr-1 ml-1">
+                <div class="product-img">
+                  <img src="<?php echo "vendor/product_upload/" . $result[$key]['photo'];?>" alt="Product Photo" class="img-fluid">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title mb-0"><?php echo $result[$key]['title']; ?></h5>
+                  <p class="card-desc"></p>
+                  <p class="card-text mb-0">₱ <?php echo $result[$key]['price'] ?></p>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+          
+          
+        
         <?php 
           }
         }
         
         ?>
+          
 
-        <p class = shops >Suppliers</p>
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="product-img" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title mb-0">PRODUCT TITLE</h5>
-                        <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0"> 499.00</p>
-                    <a href="#" class="btn btn-cart">ADD TO CART</a>
-                  </div>
-                </div>
-            </div>
-                           
-            <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="product-img" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title mb-0">PRODUCT TITLE</h5>
-                        <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0"> 499.00</p>
-                    <a href="#" class="btn btn-cart">ADD TO CART</a>
-                  </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="product-img" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title mb-0">PRODUCT TITLE</h5>
-                        <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0"> 499.00</p>
-                    <a href="#" class="btn btn-cart">ADD TO CART</a>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col">
-        <p class = shops >Suppliers</p>
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="product-img" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title mb-0">PRODUCT TITLE</h5>
-                        <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0"> 499.00</p>
-                    <a href="#" class="btn btn-cart">ADD TO CART</a>
-                  </div>
-                </div>
-            </div>
-                           
-            <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="product-img" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title mb-0">PRODUCT TITLE</h5>
-                        <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0"> 499.00</p>
-                    <a href="#" class="btn btn-cart">ADD TO CART</a>
-                  </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="product-img" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title mb-0">PRODUCT TITLE</h5>
-                        <p class="card-desc">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-text mb-0"> 499.00</p>
-                    <a href="#" class="btn btn-cart">ADD TO CART</a>
-                  </div>
-                </div>
-            </div>
+            
 
 <!--End ofProducts -->
               
                
                
                 <div class="col-12">
-                    <nav aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+
                 </div>
+              </div>
             </div>
           </div>
       </div>

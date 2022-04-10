@@ -10,7 +10,7 @@
    $user_session_id = $_SESSION['user'];
    // fetch user information in the database
    $sql = "SELECT * FROM products WHERE vendor_id = '$user_session_id';";
-   $result = $product->read_product($sql);
+   $categ_list = $product->read_product($sql);
 
 ?>
 
@@ -62,26 +62,26 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Stock</th>
+                                            <th scope="col">Category ID</th>
                                             <th scope="col">Photo</th>
-                                            <th scope="col">Full Name</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Date Registered</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php while($row = mysqli_fetch_assoc($result)) { ?>
-                                        <tr>
-                                            <td><?php echo $row['id']; ?></td>
-                                            <td><img src="../uploads/<?php echo $row['photo']; ?>" alt="" width="50px"> </td>
-                                            <td><?php echo $row['full_name']; ?></td>
-                                            <td><?php echo $row['username']; ?></td>
-                                            <td><?php echo $row['email']; ?></td>
-                                            <td><?php echo $row['status']; ?></td>
-                                            <td><?php echo $row['created_at']; ?></td>
-                                        </tr>
-                                        <?php }?>
+                                        <?php
+
+                                        while($category_rows = mysqli_fetch_assoc($categ_list)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $category_rows['id'] . "</td>";
+                                            echo "<td>" . $category_rows['title'] . "</td>";
+                                            echo "<td>" . $category_rows['stock'] . "</td>";
+                                            echo "<td>" . $category_rows['category_id'] . "</td>";
+                                            echo '<td><img src="product_upload/' . $category_rows['photo']. '" style="width:200px;">' . '</td>';
+                                            echo "</tr>";
+
+                                          }
+                                        ?>
                                         
                                     </tbody>
                                 </table>
