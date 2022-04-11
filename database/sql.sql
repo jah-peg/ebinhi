@@ -71,3 +71,48 @@ ALTER TABLE `products` ADD INDEX(`category_id`);
 
 ALTER TABLE `products` ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+
+
+CREATE TABLE `final_ecomm`.`google_fa` ( 
+   `id` INT(11) NOT NULL AUTO_INCREMENT , 
+   `user_id` INT(11) NOT NULL , 
+   `secret_code` VARCHAR(255) NOT NULL , 
+   `pin` VARCHAR(255) NOT NULL , 
+   PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+ALTER TABLE `google_fa` ADD INDEX(`user_id`);
+ALTER TABLE `google_fa` ADD FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+CREATE TABLE `final_ecomm`.`shopping_order` ( 
+   `id` INT(11) NOT NULL AUTO_INCREMENT , 
+   `customer_id` INT(11) NOT NULL , 
+   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+   PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+ALTER TABLE `shopping_order` ADD UNIQUE(`customer_id`);
+ALTER TABLE `shopping_order` ADD CONSTRAINT `FK` FOREIGN KEY (`customer_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+CREATE TABLE `final_ecomm`.`deliveries` ( `delivery_id` INT(11) NOT NULL AUTO_INCREMENT , `customer_id` INT(11) NOT NULL , `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`delivery_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `deliveries` ADD UNIQUE(`customer_id`);
+
+ALTER TABLE `deliveries` ADD CONSTRAINT `customer_delivery_id` FOREIGN KEY (`customer_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+CREATE TABLE `final_ecomm`.`payment` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `category_id` INT(11) NOT NULL , `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `payment` ADD CONSTRAINT `category_payment_fk` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+CREATE TABLE `final_ecomm`.`transaction_reports` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `customer_id` INT(11) NOT NULL , `order_id` INT(11) NOT NULL , `product_id` INT(11) NOT NULL , `payment_id` INT(11) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `transaction_reports` ADD INDEX(`customer_id`);
+
+ALTER TABLE `transaction_reports` ADD INDEX(`order_id`, `product_id`, `payment_id`);
+
+ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`customer_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`order_id`) REFERENCES `shopping_order`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`payment_id`) REFERENCES `payment`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

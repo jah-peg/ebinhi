@@ -6,27 +6,34 @@
    }
 
    include_once('controller/customerController.php');
+   include_once('header.php');
 
    // fetch user information in the database
    $sql = "SELECT * FROM users WHERE id = '".$_SESSION['user']."'";
 
-   $category_sql = "SELECT * FROM categories";
-   $category_result = $customer->read_customers($category_sql);
-
-   $result = $customer->read_customers($sql);
+   $result = $customer->profile_customers($sql);
+   
 
 ?>
 
+<!-- CAROUSEL -->
+<div id="carouselExampleCaptions" class="carousel slide h-100" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/banner/farmerhands.jpeg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h1>Generate Two-Factor Authentication</h1>
+        
+      </div>
+    </div>
+</div>
+</div>
+</div>
+   
+<!-- END OF CAROUSEL -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>User Home</title>
-</head>
-<body>
+<div class="container">
+
    <h1>This where your transactions as a user will take place</h1>
 
    <?php echo $result['username']; ?> <br>
@@ -36,6 +43,17 @@
    <?php echo $result['address']; ?> <br>
    <?php echo $result['role']; ?> <br>
    <?php echo $result['status']; ?> <br>
+
+   <p></p>
+   <p>
+      Dont have a code yet? <br>
+      Click <a href="google_auth.php">here</a> to generate 2FA code
+   </p>
+
    <button><a href="logout.php">Logout</a></button>
-</body>
-</html>
+
+
+</div>
+
+
+<?php include_once('footer.php'); ?>

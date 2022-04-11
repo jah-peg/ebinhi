@@ -1,5 +1,9 @@
 <?php 
 session_start();
+if(isset($_SESSION['user'])) {
+    header("location: user_home.php");
+ }
+
 
 include_once('controller/database.php');
 include_once('controller/customerController.php');

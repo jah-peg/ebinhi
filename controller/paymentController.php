@@ -1,6 +1,6 @@
 <?php
 
-class customerController {
+class paymentController {
    private $connection;
 
    function __construct() {
@@ -15,7 +15,7 @@ class customerController {
    }
 
    // registration of new customers
-   public function create_customers($userName, $email, $encrypted_pass) {
+   public function create_payment($userName, $email, $encrypted_pass) {
       $sql = "INSERT INTO users(username, email, password) VALUES('$userName', '$email', '$encrypted_pass');";
       $retval = mysqli_query($this->connection, $sql);
       if($retval) {
@@ -25,7 +25,7 @@ class customerController {
       }
    }
 
-   public function read_customers($sql) {
+   public function read_payment($sql) {
       if(!empty($sql)) {
          return $result = mysqli_query($this->connection, $sql);
          // return $row = mysqli_fetch_assoc($result);
@@ -34,42 +34,16 @@ class customerController {
       }
    }
 
-   public function profile_customers($sql) {
-      if(!empty($sql)) {
-         $result = mysqli_query($this->connection, $sql);
-         return $row = mysqli_fetch_assoc($result);
-      } else {
-         return false;
-      }
-   }
-
-   public function update_customers() {
+   public function update_payment() {
 
    }
 
-   // verifying of credentials
-   public function verify_customer($userName, $password) {
-      $sql = "SELECT * FROM `users` WHERE `username` = '$userName' LIMIT 1;";
-      $result = mysqli_query($this->connection, $sql);
-
-      if(mysqli_num_rows($result)) {
-      return $result;
-      } else {
-      return false;
-      }
-   }
 
 }
 
 
 
-
-
-
-
-
-
-$customer = new customerController();
-$customer->connect_db();
+$payment = new paymentController();
+$payment->connect_db();
 
 ?>

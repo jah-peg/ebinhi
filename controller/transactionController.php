@@ -1,6 +1,6 @@
 <?php
 
-class customerController {
+class transactionController {
    private $connection;
 
    function __construct() {
@@ -15,7 +15,7 @@ class customerController {
    }
 
    // registration of new customers
-   public function create_customers($userName, $email, $encrypted_pass) {
+   public function create_transaction($userName, $email, $encrypted_pass) {
       $sql = "INSERT INTO users(username, email, password) VALUES('$userName', '$email', '$encrypted_pass');";
       $retval = mysqli_query($this->connection, $sql);
       if($retval) {
@@ -25,7 +25,7 @@ class customerController {
       }
    }
 
-   public function read_customers($sql) {
+   public function read_transaction($sql) {
       if(!empty($sql)) {
          return $result = mysqli_query($this->connection, $sql);
          // return $row = mysqli_fetch_assoc($result);
@@ -69,7 +69,7 @@ class customerController {
 
 
 
-$customer = new customerController();
-$customer->connect_db();
+$transact = new transactionController();
+$transact->connect_db();
 
 ?>
