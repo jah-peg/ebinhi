@@ -19,8 +19,9 @@ $qrCodeUrl = $google_fa->getQRCodeGoogleUrl('User', $secret);
 
 $code = $google_fa->getCode($secret);
 
+
 if(isset($_POST['submit'])) {
-   $google_sql = "INSERT INTO google_fa(user_id, secret_code, pin) VALUES('".$_SESSION['user']."', '$secret', '$code')";
+   $google_sql = "INSERT INTO google_fa(user_id, secret_code, pin, url) VALUES('".$_SESSION['user']."', '$secret', '$code', '$qrCodeUrl')";
 
    $google_result = $googleC->create_code($google_sql);
 

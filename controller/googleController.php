@@ -23,9 +23,10 @@ class googleController {
       }
    }
 
-   public function read_product($sql) {
+   public function read_code($sql) {
       if(isset($sql)) {
-         return $result = mysqli_query($this->connection, $sql);
+         $result = mysqli_query($this->connection, $sql);
+         return $row = mysqli_fetch_assoc($result);
       } else {
          return false;
       }
@@ -40,6 +41,19 @@ class googleController {
 			return $resultset;
    }
 
+   
+   // verifying of credentials
+   public function verify_code($user_id) {
+      $sql = "SELECT * FROM `google_fa` WHERE `user_id` = '$user_id' LIMIT 1;";
+      $result = mysqli_query($this->connection, $sql);
+
+      if(mysqli_num_rows($result)) {
+      return $result;
+      } else {
+      return false;
+      }
+   }
+   
    
 
 

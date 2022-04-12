@@ -45,10 +45,6 @@
    <?php echo $result['status']; ?> <br>
 
    <p></p>
-   <p>
-      Dont have a code yet? <br>
-      Click <a href="google_auth.php">here</a> to generate 2FA code
-   </p>
 
    <button><a href="logout.php">Logout</a></button>
 

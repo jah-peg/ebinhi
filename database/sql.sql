@@ -116,3 +116,16 @@ ALTER TABLE `transaction_reports` ADD INDEX(`customer_id`);
 ALTER TABLE `transaction_reports` ADD INDEX(`order_id`, `product_id`, `payment_id`);
 
 ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`customer_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`order_id`) REFERENCES `shopping_order`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`payment_id`) REFERENCES `payment`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `transaction_reports` ADD FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+CREATE TABLE `final_ecomm`.`cart` ( `id` INT NOT NULL AUTO_INCREMENT , `product_id` INT NOT NULL , `user_id` INT NOT NULL , `status` INT NOT NULL , `quantity` INT NOT NULL , `amount` INT NOT NULL , `subtotal` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `cart` CHANGE `status` `status` ENUM('processing','delivery','finished') NOT NULL DEFAULT 'processing';
+
+
+
+ALTER TABLE `cart` ADD INDEX(`product_id`, `user_id`);
+
+ALTER TABLE `cart` ADD FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `cart` ADD FOREIGN KEY (`product_id`) REFERENCES `products`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+

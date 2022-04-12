@@ -11,7 +11,13 @@ $error = "";
     $lastname = $_POST['lastname'];
     $username = $_POST['uname'];
     $email = $_POST['email'];
+
     $password = $_POST['password'];
+    $number = preg_match('@[0-9]@', $password);
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
     $confirm_password = $_POST['confirm_password'];
     $address_1 = $_POST['address_1'];
     $address_2 = $_POST['address_2'];
@@ -26,21 +32,29 @@ $error = "";
     $folder = "uploads/" . $photo;
 
     $fullname = $firstname . " " . $lastname;
+
     if($password == $confirm_password) {
       $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
-
-      $create_seller_statement = $vendor->create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $complete_address);
-    
-      if($create_seller_statement) {
-        if(move_uploaded_file($tmpname, $folder)) {
-          $error = "Registration Successful!";
-          header('Location:log_reg.php');
-        } else {
-          $error = "Failed to upload image";
-        }
+      if(strlen($password) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars) {
+        $error = "Password must be at least 8 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.";
       } else {
-          $error = "Failed to register";
+
+
+        $create_seller_statement = $vendor->create_seller($fullname, $username, $email, $encrypted_pass, $photo, $phone, $complete_address);
+      
+        if($create_seller_statement) {
+          if(move_uploaded_file($tmpname, $folder)) {
+            $error = "Registration Successful!";
+            header('Location:log_reg.php');
+          } else {
+            $error = "Failed to upload image";
+          }
+        } else {
+            $error = "Failed to register";
+        }
+
       }
+      
     } else {
       $error = "Error Password!";
     }
@@ -85,6 +99,15 @@ $error = "";
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
+    
+    <div class="col-sm-12">
+        <div class="alert  alert-danger alert-dismissible fade show" role="alert" <?php if(isset($error)) echo "hidden"; ?>>
+            <span><?php echo $error?></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
 
  	<label for="uname"><b>Username</b></label>
     <input type="text" placeholder="" name="uname" id="uname" required>
@@ -121,11 +144,11 @@ $error = "";
     <input type="text" placeholder="" name="s_phone" id="s_phone" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="confirm_password" id="psw-repeat" required>
-    
+    <input type="password" placeholder="Repeat Password" name="confirm_password" id="confirm_password" required>
+
     <label for="file"><b>Upload your store Profile Picture</b></label><br>
     <input type="file" id="myFile" name="filename">
   
