@@ -15,13 +15,13 @@ class customerController {
    }
 
    // registration of new customers
-   public function create_customers($userName, $email, $encrypted_pass) {
-      $sql = "INSERT INTO users(username, email, password) VALUES('$userName', '$email', '$encrypted_pass');";
+   public function create_customer($fullname, $username, $email, $encrypted_pass, $photo, $phone, $address) {
+      $sql = "INSERT INTO users(full_name, username, email, password, photo, phone, address) VALUES('$fullname', '$username', '$email', '$encrypted_pass', '$photo', '$phone', '$address');";
       $retval = mysqli_query($this->connection, $sql);
       if($retval) {
-      return true;
+         return true;
       } else {
-      return false;
+         return false;
       }
    }
 

@@ -38,31 +38,6 @@ if(isset($_POST['login'])) {
 
 ?>
 
-
-
-<?php
-
-if(isset($_POST['register'])) {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $encrypted_pass = password_hash($password, PASSWORD_BCRYPT);
-
-    $create_customer_statement = $customer->create_customers($username, $email, $encrypted_pass);
-
-    if($create_customer_statement) {
-        echo '<script> alert("Success!") </script>';
-        header("Location: log_reg.php");
-    } else {
-        echo '<script> alert("Failed!") </script>';
-        header("Location: log_reg.php");
-    }
-}
-
-?>
-
-
 <?php
  include_once 'header.php';
 ?>
@@ -126,30 +101,24 @@ if(isset($_POST['register'])) {
 
             <div class="col-md-6 regi-form">
                 <h3>Register</h3>
-                <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email " value="" name="email" required/>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username" value="" name="username" required/>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password " value="" name="password" required/>
+                        <p class="text_policy">
+                            Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.
+                        </p>
                     </div>
 
                     <div class="form-group">
-                        <p class="text_policy">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p>
+                        <a href="buyer_regi.php" class="btn btnSubmit">Register as Buyer</a>
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" class="btnSubmit" value="Register" name="register"/>
+                        <a href="seller_regi.php" class="btn btnSubmit">Register as Seller</a>
                     </div>
 
                     
 
-                    <div class="form-group">
-                    <button type="button" class="btnSubmit" onclick="location.href='seller_regi.php';" />Become a Seller</button>
-                    </div>
+                    
 
                     
                 

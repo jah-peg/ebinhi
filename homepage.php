@@ -1,3 +1,42 @@
+<!-- CAROUSEL -->
+<div id="carouselExampleCaptions" class="carousel slide h-100" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/carousel/1.png" class="d-block w-100" alt="...">
+      
+    </div>
+    <div class="carousel-item">
+      <img src="images/carousel/2.png" class="d-block w-100" alt="...">
+      
+    </div>
+    <div class="carousel-item">
+      <img src="images/carousel/3.png" class="d-block w-100" alt="...">
+      
+    </div>
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+    <span class="" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-left prev" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+    <span class="" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chevron-right next" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </span>
+    <span class="sr-only">Next</span>
+  </button>
+</div>
+<!-- END OF CAROUSEL --> 
+
+
+
+
 <!-- Suppliers/Exporter -->
 <div class="container-fluid mx-y">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
