@@ -79,15 +79,16 @@
                                             echo "<td>" . $category_rows['title'] . "</td>";
                                             echo "<td>" . $category_rows['stock'] . "</td>";
                                             echo "<td>" . $category_rows['category_id'] . "</td>";
-                                            echo '<td><img src="product_upload/' . $category_rows['photo']. '" style="width:200px;">' . '</td>';
-                                            echo "<td>" . "<a href='tables-product.php?edit='" . $category_rows['category_id'] . "' class = 'btn btn-success'>Update</a>" . "</td>";
-                                            echo "<td>" . "<a href='tables-product.php?del='" . $category_rows['category_id'] . "' class = 'btn btn-danger'>Delete</a>" . "</td>";
-                                            
+                                            echo '<td><img src="product_upload/' . $category_rows['photo']. '" style="width:100px;">' . '</td>';
+                                            echo "<td>" . "<a href='tables-products.php?edit='" . $category_rows['category_id'] . "' class = 'btn btn-primary'>Update</a>" . "</td>";
+                                            echo "<td>" . "<a href='tables-products.php?del='" . $category_rows['category_id'] . "' class = 'btn btn-danger'>Delete</a>" . "</td>";
                                             
                                             echo "</tr>";
 
                                           }
                                         ?>
+
+                                        
                                         
                                     </tbody>
                                 </table>

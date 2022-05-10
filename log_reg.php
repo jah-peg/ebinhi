@@ -102,6 +102,17 @@ if(isset($_POST['login'])) {
             <div class="col-md-6 regi-form">
                 <h3>Register</h3>
                 <form>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" value="" name="email" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username " value="" name="username" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password " value="" name="password" required/>
+                    </div>
+
                     <div class="form-group">
                         <p class="text_policy">
                             Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.
@@ -109,7 +120,7 @@ if(isset($_POST['login'])) {
                     </div>
 
                     <div class="form-group">
-                        <a href="buyer_regi.php" class="btn btnSubmit">Register as Buyer</a>
+                        <a href="buyer_regi.php" class="btn btnSubmit">Continue as Buyer</a>
                     </div>
 
                     <div class="form-group">
