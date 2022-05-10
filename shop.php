@@ -137,10 +137,10 @@ if(isset($_SESSION["cart_item"])){
 	?>
 		<div class="product-item">
 			<form method="post" action="shop.php?action=add&code=<?php echo $product_array[$key]["id"]; ?>">
-			<div class="product-image"><img src="vendor/product_upload/ <?php echo $product_array[$key]["photo"]; ?>"></div>
+			<div class="product-image"><img width="200px" src="vendor/product_upload/<?php echo $product_array[$key]["photo"]; ?>"></div>
 			<div class="product-tile-footer">
 			<div class="product-title"><?php echo $product_array[$key]["title"]; ?></div>
-			<div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
+			<div class="product-price"><?php echo "₱".$product_array[$key]["price"]; ?></div>
 			<div class="cart-action"><input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Add to Cart" class="btnAddAction" /></div>
 			</div>
 			</form>
